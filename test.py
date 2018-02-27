@@ -1,13 +1,17 @@
+import os
 import sys
-import requests
 import json
 import time
+import requests
 
+token = os.environ['TOKEN']
+print 'TOKEN:', token
 offset = 590185715
-logger = open('data/%s.log' % (time.strftime("%Y%m%d", time.localtime())), 'a', buffering=0)
 while True:
+    logger = open('data/%s.log' % (time.strftime("%Y%m%d", time.localtime())), 'a', buffering=0)
     try:
-        r = requests.get('https://api.telegram.org/%s/getupdates?offset=%s' % offset, timeout=10)
+        url = 'https://api.telegram.org/bot%s/getupdates?offset=%s' % (token, offset)
+        r = requests.get(url, timeout=10)
         update_id = 0
         for _ in r.json().get('result', []):
             update_id = _['update_id']
@@ -18,4 +22,5 @@ while True:
         #print '.'
     except Exception as e:
         print e
+    logger.close()
     time.sleep(5)
