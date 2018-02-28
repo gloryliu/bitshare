@@ -22,8 +22,8 @@ for line in sys.stdin:
     if teleid not in result or result[teleid]['tele_time'] < date:
         inviter_token = token2id[text]['inviter_token']
         inviter_info = token2id.get(inviter_token, {})
-        inviter_id = inviter_info.get('self_id', '')
-        inviter_click_time = inviter_info.get('click_time', '')
+        inviter_id = inviter_info.get('self_id', 'default')
+        inviter_click_time = inviter_info.get('click_time', 'default')
         result[teleid] = dict(token2id[text], **{'tele_time': date, 'self_token': text, 'inviter_id': inviter_id, 'inviter_click_time': inviter_click_time, 'teleid': teleid})
 
 print json.dumps(result)
