@@ -23,6 +23,6 @@ for line in sys.stdin:
         inviter_info = token2id.get(inviter_token, {})
         inviter_id = inviter_info.get('self_id', '')
         inviter_click_time = inviter_info.get('click_time', '')
-        result[teleid] = dict(token2id[text], **{'tele_time': date, 'self_token': text, 'inviter_id': inviter_id, 'inviter_click_time': inviter_click_time})
+        result[teleid] = dict(token2id[text], **{'tele_time': date, 'self_token': text, 'inviter_id': inviter_id, 'inviter_click_time': inviter_click_time, 'teleid': teleid})
 
 print json.dumps(result)
