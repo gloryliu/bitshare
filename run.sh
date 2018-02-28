@@ -3,8 +3,12 @@
 
 # 运行服务
 # nohup python getTeleData.py &
+source ~/.bashrc
 
-cat log/* | python log2dict.py > token2id.json
-cat data/*.log | python teleDataFilter.py > teleid2result.json
-#cat teleid2result.json
-python result2id.py > server.preload.json
+project=ETC
+mkdir -p $project/data
+cat ~/qinsiyuan/LET/log/$project/* | python log2dict.py > $project/token2id.json
+cat $project/token2id.json
+cat $project/data/*.log | python teleDataFilter.py > $project/teleid2result.json
+cat $project/teleid2result.json
+python result2id.py > $project/server.preload.json

@@ -1,8 +1,9 @@
 import sys
 import simplejson as json
+from config import project
 
 result = {}
-teleid2result = json.loads(open('teleid2result.json', 'rb').read())
+teleid2result = json.loads(open(project + '/teleid2result.json', 'rb').read())
 for teleid, value in teleid2result.items():
     self_id = value['self_id']
     inviter_id = value['inviter_id']

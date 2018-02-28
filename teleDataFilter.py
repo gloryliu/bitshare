@@ -1,8 +1,9 @@
 import sys
 import time
+from config import project
 import simplejson as json
 
-token2id = json.loads(file('token2id.json', 'rb').read())
+token2id = json.loads(file(project + '/token2id.json', 'rb').read())
 result = {}
 
 for line in sys.stdin:
