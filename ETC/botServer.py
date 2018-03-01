@@ -3,13 +3,11 @@ import sys
 import json
 import time
 import requests
-from config import project
+from config import token
 
-token = os.environ['TOKEN']
-print 'TOKEN:', token
 offset = 590185715
 while True:
-    logger = open(project + '/data/%s.log' % (time.strftime("%Y%m%d", time.localtime())), 'a', buffering=0)
+    logger = open('data/%s.log' % (time.strftime("%Y%m%d", time.localtime())), 'a', buffering=0)
     try:
         url = 'https://api.telegram.org/bot%s/getupdates?offset=%s' % (token, offset)
         r = requests.get(url, timeout=10)

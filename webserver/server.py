@@ -9,7 +9,7 @@ global query_dict
 
 def load():
     global query_dict
-    query_dict = dict([(_, json.loads(file(_ + '/server.preload.json', 'rb').read())) for _ in project_list])
+    query_dict = dict([(_, json.loads(file('../' + _ + '/server.preload.json', 'rb').read())) for _ in project_list])
 
 @app.route("/")
 def hello():
