@@ -5,7 +5,7 @@
 # nohup python getTeleData.py &
 source ~/.bashrc
 
-project=ETC
+project='let'
 mkdir -p $project/data
 cat ~/qinsiyuan/LET/log/$project/* | python log2dict.py > $project/token2id.json
 cat $project/token2id.json

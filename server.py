@@ -4,12 +4,16 @@ import simplejson as json
 app = Flask(__name__)
 CORS(app) 
 
-project_list = ['LET', 'ETC']
+project_list = ['let']
 global query_dict
+query_dict = {}
 
 def load():
-    global query_dict
-    query_dict = dict([(_, json.loads(file(_ + '/server.preload.json', 'rb').read())) for _ in project_list])
+    try:
+        global query_dict
+        query_dict = dict([(_, json.loads(file(_ + '/server.preload.json', 'rb').read())) for _ in project_list])
+    except Exception as e:
+        print e
 
 @app.route("/")
 def hello():
@@ -30,7 +34,6 @@ def all():
 @app.route('/query/<project>/<username>')
 def show_user_profile(project, username):
     global query_dict
-    project = project.upper()
     if project in project_list:
     # show the user profile for that user
         print json.dumps(query_dict[project].get(username, {}))

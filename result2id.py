@@ -9,6 +9,11 @@ for teleid, value in teleid2result.items():
     inviter_id = value['inviter_id']
     if self_id not in result:
         result[self_id] = {'self': 1, 'share': 0, 'self_info': value, 'share_info_list': []}
+    else:
+        result[self_id]['self'] = 1
+        result[self_id]['self_info'] = value
+    if self_id == inviter_id:
+        continue
     if inviter_id not in result:
         result[inviter_id] = {'self': 0, 'share': 1, 'self_info': {}, 'share_info_list': [value]}
     else:
